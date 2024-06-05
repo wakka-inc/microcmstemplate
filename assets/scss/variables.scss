@@ -1,0 +1,99 @@
+/** Variables **/
+:root {
+  --color-black: #000;
+  --color-white: #fff;
+  --size-sidebar: 32rem;
+  --image-ratio: 1.62;
+  --header-height-pc-normal: 10rem;
+  --header-height-pc-mini: 6rem;
+  --header-height-sp-normal: 6rem;
+  --header-height-sp-mini: 5rem;
+}
+
+
+
+/** Mixins **/
+$is_mobile_first: false;
+
+@mixin media($type) {
+  @if $is_mobile_first == true {
+    @if $type == xs {
+      @content;
+    }
+    @else if $type == sm {
+      @media (min-width: 576px) { @content; }
+    }
+    @else if $type == md {
+      @media (min-width: 768px) { @content; }
+    }
+    @else if $type == lg {
+      @media (min-width: 992px) { @content; }
+    }
+    @else if $type == xl {
+      @media (min-width: 1200px) { @content; }
+    }
+  }
+  @else {
+    @if $type == xxs {
+      @media (max-width: 414.98px) { @content; }
+    }
+    @else if $type == xs {
+      @media (max-width: 575.98px) { @content; }
+    }
+    @else if $type == sm {
+      @media (max-width: 767.98px) { @content; }
+    }
+    @else if $type == md {
+      @media (max-width: 991.98px) { @content; }
+    }
+    @else if $type == lg {
+      @media (max-width: 1199.98px) { @content; }
+    }
+    @else if $type == xl {
+      @content;
+    }
+  }
+}
+@mixin media-min-width($type) {
+  @if $type == xs {
+    @content;
+  }
+  @else if $type == sm {
+    @media (min-width: 576px) { @content; }
+  }
+  @else if $type == md {
+    @media (min-width: 768px) { @content; }
+  }
+  @else if $type == lg {
+    @media (min-width: 992px) { @content; }
+  }
+  @else if $type == xl {
+    @media (min-width: 1200px) { @content; }
+  }
+  @else if $type == xxl {
+    @media (min-width: 1500px) { @content; }
+  }
+  @else if $type == xxxl {
+    @media (min-width: 1600px) { @content; }
+  }
+}
+@mixin media-max-width($type) {
+  @if $type == xxs {
+    @media (max-width: 414.98px) { @content; }
+  }
+  @else if $type == xs {
+    @media (max-width: 575.98px) { @content; }
+  }
+  @else if $type == sm {
+    @media (max-width: 767.98px) { @content; }
+  }
+  @else if $type == md {
+    @media (max-width: 991.98px) { @content; }
+  }
+  @else if $type == lg {
+    @media (max-width: 1199.98px) { @content; }
+  }
+  @else if $type == xl {
+    @content;
+  }
+}

@@ -1,0 +1,27 @@
+.divider {
+  position: relative;
+  height: .1rem;
+  margin: 4rem 0;
+  background-color: rgba(#000, .1);
+
+  &--slash {
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: calc(-50% + 1px);
+      display: block;
+      width: 1.5rem;
+      height: 1rem;
+      background: url(../images/element-2line.png) no-repeat center center;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  }
+
+
+  /** MEDIA **/
+  @media (max-width: 991px) {
+    margin: 3.5rem 0;
+    background-color: rgba(#000, .2);
+  }
+}

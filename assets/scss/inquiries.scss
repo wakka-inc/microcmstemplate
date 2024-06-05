@@ -1,0 +1,78 @@
+.inquiries {
+  overflow: hidden;
+  position: relative;
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    z-index: -1;
+  }
+  &::before {
+    height: 100%;
+    margin-top: 1.2rem;
+    background: url(../images/bg-line-2x.png) repeat;
+    opacity: .05;
+  }
+  &::after {
+    height: 1.2rem;
+    background: #fff url(../images/bg-line-1x.png) repeat;
+    opacity: .3;
+    transform: scaleX(-1);
+  }
+
+  &__inner {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  &__title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+    .titleline {
+      font-weight: 700;
+    }
+  }
+  &__text {
+    margin-bottom: 4rem;
+    font-size: 2.1rem;
+    text-align: center;
+    letter-spacing: .1rem;
+  }
+  &__btns {
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
+  }
+  .btn--large {
+    a {
+      min-width: 25rem;
+    }
+  }
+
+
+  /** MEDIA **/
+  @media (max-width: 991px) {
+    &__inner {
+      padding-top: 4.2rem;
+      padding-bottom: 4rem;
+    }
+    &__title {
+      margin-bottom: 2rem;
+    }
+    &__text {
+      margin-bottom: 2.5rem;
+      font-size: 1.4rem;
+    }
+    &__btns {
+      column-gap: 1rem;
+    }
+    .btn--large {
+      a {
+        min-width: 16rem;
+      }
+    }
+  }
+}

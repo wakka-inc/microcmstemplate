@@ -1,0 +1,125 @@
+/**
+ * FORM BASIC
+ */
+ ::placeholder {
+  color: #888;
+  font-weight: 400;
+}
+input, textarea {
+  &:focus {
+    outline: none;
+  }
+}
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=tel],
+input[type=url],
+input[type=search],
+textarea,
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  padding: .8rem 1.5rem;
+  background-color: rgba(#000, .05);
+  border-radius:.6rem;
+  border: 1px solid transparent;
+  color: #000;
+  box-shadow: none;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  transition: box-shadow 0.15s;
+  &:hover {
+    border-radius:.2rem;
+  }
+  &:focus {
+    background-color: #fff;
+    border-color: #000;
+    border-radius:.2rem;
+    box-shadow: 0 0 0 5px rgba($color: #000, $alpha: 0.25);
+    outline: 0;
+  }
+  &:disabled {
+    color: #000;
+  }
+  &.input-300 {
+    width: 30rem;
+  }
+  &.input-sm {
+    padding: 9px 2rem;
+    font-size: 1.2rem;
+  }
+}
+input[type=search] {
+  // Hidden 'x' button on input field
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+select {
+  display: inline-block;
+  min-width: 25rem;
+  padding-right: 24px;
+  background-image: url(/imgs/icon-arrow-bottom.png);
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: 22px;
+  font-weight: 700;
+  option {
+    font-weight: 400;
+  }
+  &::-ms-expand {
+    display: none;
+  }
+  &.select-style2 {
+    background-image: url(/imgs/icon-arrow-bottom-solid.png);
+    background-size: 24px;
+  }
+}
+label {
+  display: inline-block;
+  margin-bottom:.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/** MEDIA **/
+@include media(sm) {
+  input[type=text],
+  input[type=email],
+  input[type=password],
+  input[type=tel],
+  input[type=url],
+  textarea,
+  select {
+    padding: 10px 1.5rem;
+    font-size: 1.2rem;
+    &:focus {
+      box-shadow: 0 0 0 5px rgba($color: #000, $alpha: 0.35);
+    }
+  }
+  label {
+    font-size: 1.4rem;
+  }
+}
+
+
+
+
+
+
+/** Form Input **/
+.form-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  .btn-icon {
+    position: absolute;
+    top: 50%;
+    right: .5rem;
+    transform: translate3d(0, -50%, 0);
+  }
+}

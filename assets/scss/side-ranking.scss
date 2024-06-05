@@ -1,0 +1,101 @@
+.sideranking {
+  margin-top: 4rem;
+  counter-reset: RANKING;
+  &__header {
+    margin-bottom: 1.5rem;
+    .title {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-right:.5rem;
+        border-radius: 10rem;
+        background-color: var(--color-black);
+      }
+    }
+  }
+  /** Post item **/
+  .postitem {
+    display: flex;
+    column-gap: 1.2rem;
+    margin-bottom: 3rem;
+    &__thumbnail {
+      &__img {
+        overflow: hidden;
+        position: relative;
+        display: block;
+        width: 10rem; 
+        border-radius: .4rem;
+        background: no-repeat url(../images/image-loading-small.png) center center;
+        background-size: cover;
+        &::after {
+          content: '#' counter(RANKING);
+          counter-increment: RANKING;
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: block;
+          padding: .2rem .5rem;
+          color: #fff;
+          font-size: 1.8rem;
+          font-weight: 300;
+          line-height: 1;
+          text-shadow: .1rem .1rem 0 rgba(#000,.5);
+          transition: all .2s;
+        }
+        img {
+          object-fit: cover;
+          aspect-ratio: var(--image-ratio);
+        }
+        &:hover {
+          &::after {
+            transform: scale(3);
+          }
+        }
+      }
+    }
+    &__title {
+      margin-bottom:.5rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.4;
+      a {
+        /** Setup line clamp: 2 lines **/
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+        &:hover {
+          opacity: .7;
+          // background: linear-gradient(transparent 95%, rgba(0,0,0,.75) 0);
+        }
+      }
+    }
+    &__author {
+      display: none;
+    }
+    &__date {
+      display: flex;
+      align-items: center;
+      color: rgba(#000, .5);
+      font-size: 1.1rem;
+      line-height: 1.2;
+      .icon {
+        padding-right: .4rem;
+        opacity: .5;
+      }
+    }
+  }
+
+
+  /** MEDIA **/
+  @media (max-width: 991px) {
+    margin-bottom: 4rem;
+  }
+}

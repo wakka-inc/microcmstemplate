@@ -1,0 +1,32 @@
+.toggle-search {
+  display: none;
+  button {
+    background-color: transparent;
+  }
+  svg {
+    opacity: 1;
+  }
+  .icon__2 {
+    display: none;
+  }
+
+  
+  /** MEDIA **/
+  @media (max-width: 991px) {
+    display: initial;
+    &.inputsearch--active {
+      button {
+        background-color: #000;
+      }
+      svg {
+        opacity: 1;
+      }
+      .icon__1 {
+        display: none;
+      }
+      .icon__2 {
+        display: initial;
+      }
+    }
+  }
+}

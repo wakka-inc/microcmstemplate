@@ -1,0 +1,40 @@
+.footer-menu {
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    list-style-type: none;
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &__item {
+    &::after {
+      content: '/';
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    a {
+      color: #fff;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+
+  /** MEDIA **/
+  @media (max-width: 991px) {
+    display: none;
+  }
+}

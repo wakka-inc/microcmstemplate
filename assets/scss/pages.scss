@@ -1,0 +1,53 @@
+/** Main **/
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  padding-top: 10rem;
+  &__wrapper {
+    flex: 1;
+  }
+  &__inner {
+    display: flex;
+    flex-direction: row;
+    column-gap: 6rem;
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+  }
+  &__content {
+    flex: 1;
+  }
+
+  
+  /** MEDIA **/
+  @media (min-width: 1200px) {
+  }
+
+  @media (max-width: 991px) {
+    padding-top: 6rem;
+    &__inner {
+      flex-direction: column;
+      padding-bottom: 4rem;
+    }
+  }
+}
+
+
+/** PAGES **/
+.page--home {
+  @media (max-width: 991px) {
+    .main__inner {
+      padding-top: 0;
+    }
+  }
+}
+.page--article {
+  ~ .inquiries {
+    display: none;
+  }
+  @media (max-width: 991px) {
+    .main__inner {
+      padding-top: 0;
+    }
+  }
+}

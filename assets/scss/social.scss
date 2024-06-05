@@ -1,0 +1,124 @@
+.sns {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .4rem;
+  }
+  &__item {
+    &__inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 3.6rem;
+      height: 3rem;
+      border-radius: .4rem;
+      border: 1px solid transparent;
+      transition: all .15s;
+    }
+    svg {
+      transform: scale(.8);
+    }
+    &:hover {
+      .sns__item__inner {
+        background-color: rgba(#000, 0.08);
+      }
+      svg {
+        fill: #000;
+      }
+    }
+    &:active {
+      .sns__item__inner {
+        background-color: #000;
+      }
+      svg {
+        fill: #fff;
+      }
+    }
+  }
+
+  &--large {
+    .sns__list {
+      column-gap: .8rem;
+    }
+    .sns__item {
+      &__inner {
+        min-width: 7rem;
+        height: 5rem;
+        border-radius: .5rem;
+      }
+      svg {
+        transform: scale(1);
+      }
+    }
+  }
+  &--xlarge {
+    .sns__list {
+      column-gap: .8rem;
+    }
+    .sns__item {
+      &__inner {
+        min-width: 8rem;
+        height: 5rem;
+        border-radius: .5rem;
+      }
+      svg {
+        transform: scale(1);
+      }
+    }
+  }
+
+  &--white {
+    .sns__item {
+      svg {
+        fill: #fff;
+      }
+      &:hover {
+        .sns__item__inner {
+          background-color: rgba(#fff, 0.08);
+        }
+      }
+      &:active {
+        .sns__item__inner {
+          background-color: #fff;
+        }
+        svg {
+          fill: #000;
+        }
+      }
+    }
+  }
+
+
+  /** MEDIA **/
+  @media (max-width: 991px) {
+    &--large {
+      .sns__list {
+        column-gap: .4rem;
+      }
+      .sns__item {
+        &__inner {
+          min-width: 4.8rem;
+          height: 3rem;
+        }
+        svg {
+          transform: scale(.95);
+        }
+      }
+    }
+    &--xlarge {
+      .sns__list {
+        column-gap: .5rem;
+      }
+      .sns__item {
+        &__inner {
+          min-width: 7rem;
+          height: 3.6rem;
+        }
+        svg {
+          transform: scale(.7);
+        }
+      }
+    }
+  }
+}

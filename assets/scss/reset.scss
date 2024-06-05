@@ -1,0 +1,82 @@
+/** My reset **/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+body {
+  color: var(--color-black);
+  font-size: 1.6rem;
+  word-break: break-word;
+}
+ 
+img, svg {
+  display: block;
+  margin-bottom: 0;
+}
+a {
+  color: var(--color-black);
+  text-decoration: none;
+  cursor: pointer;
+}
+p {
+  margin: 0 0 2rem;
+}
+code {
+  padding: .2rem .4rem;
+  background-color: #000;
+  color: #fff;
+  font-size: .95em;
+}
+button {
+  cursor: pointer;
+}
+::selection  {
+  color: #fff;
+  background: #000;
+}
+
+/** MEDIA **/
+@media (max-width: 991px) {
+  body {
+    // font-size: 1.5rem;
+  }
+}
+
+
+
+/** Grid **/
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 1.5rem;
+  @media (min-width: 1200px) {
+    padding: 0 3rem;
+  }
+  @media (min-width: 1400px) {
+    max-width: 1380px;
+  }
+}
+
+
+
+/** Utilities **/
+.pc {
+  @media (max-width: 991px) {
+    display: none;
+  }
+}
+.sp {
+  display: none;
+  @media (max-width: 991px) {
+    display: initial;
+  }
+}
+

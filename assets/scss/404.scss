@@ -1,0 +1,52 @@
+/** PAGE 404 500 502 **/
+.page--404, .page--500, .page--502 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  & ~ .inquiries {
+    display: none;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fff url(../images/bg-line-1x.png) repeat;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    z-index: -1;
+  }
+}
+.page--502 {
+  .main__inner {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  @media (max-width: 991px) {
+    .main__inner {
+      padding-bottom: 0;
+    }
+  }
+}
+
+
+/** SECTION **/
+.page404, .page500 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__img {
+    margin-bottom: 4rem;
+  }
+}
+.page502 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  &__img {
+    margin-bottom: 4rem;
+  }
+}

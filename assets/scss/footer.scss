@@ -1,0 +1,55 @@
+.footer {
+  background-color: #333;
+  color: #fff;
+  &__inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 0;
+  }
+  &__logo {
+    margin-bottom: 3rem;
+  }
+  &__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1rem;
+    min-width: 70rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+    border: solid rgba(#fff, .2);
+    border-width: 1px 0;
+  }
+  &__copyright {
+    font-size: 1.2rem;
+    letter-spacing:.2rem;
+  }
+}
+
+
+/** Footer Canvas Line **/
+.footer {
+  position: relative;
+
+  /** MEDIA **/
+  @media (max-width: 991px) {
+    &__inner {
+      padding: 3rem 0;
+    }
+    &__logo {
+      img {
+        transform: scale(.7);
+      }
+    }
+    &__main {
+      min-width: 25rem;
+      padding: 1.5rem 0;
+    }
+    &__copyright {
+      font-size: 1.1rem;
+    }
+  }
+}

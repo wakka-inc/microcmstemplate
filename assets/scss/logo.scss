@@ -1,0 +1,15 @@
+.logo {
+  -webkit-user-select: none;
+  user-select: none;
+  &__text {
+    display: block;
+    font-size: 4.6rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  img {
+    width: auto;
+    max-height: 10rem;
+    transition: all .2s; 
+  }
+}
