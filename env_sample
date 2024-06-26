@@ -1,0 +1,4 @@
+MICROCMS_API_KEY=xxxxxxxxxx
+MICROCMS_SERVICE_DOMAIN=xxxxxxxxxx
+BASE_URL=http://localhost:3000/
+DATA_REVALIDATE=0
