@@ -71,7 +71,8 @@ async function Pagination({ totalCount = 0, pageCurrent = 1, basePath = '', q, i
     }
   }
 
-  return(
+  return (
+    (pagesCount > 0) &&
     <div className={`pagination pagination--count-${pagesCount}`}>
       <ul className="pagination__list">
         { pagesFirstLast.map(page => RenderItem(page) )}

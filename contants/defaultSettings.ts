@@ -1,8 +1,8 @@
 export const defaultSettings = {
-  name: 'MAG',
+  siteName: 'MAG',
   title: 'MAG - MicroCMS Template',
   description: 'MAG - description of MicroCMS template',
-  postLimit: 3, // default: 10
+  postLimit: 10, // default: 10
   postMainVisualLimit: 3,
   postRankLimit: 5,
   postRelatedLimit: 4,
@@ -11,5 +11,4 @@ export const defaultSettings = {
   notfoundTitle: 'ページが見つかりません',
   error500Title: 'データに接続できません',
   error502Title: 'SERVER NOT FOUND',
-  revalidate: 0
 }

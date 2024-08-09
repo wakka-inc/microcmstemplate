@@ -9,7 +9,7 @@ async function FooterMenu() {
 
   return(
     <>
-      { !!menusFooter &&
+      { menusFooter &&
       <div className="footer-menu">
         <ul className="footer-menu__list">
           { menusFooter.map((link: Button, index: number) =>

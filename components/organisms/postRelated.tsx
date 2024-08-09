@@ -12,7 +12,7 @@ async function PostRelated({postId}: {
   const relatedData = microData.relatedPost
 
   return(
-    !!relatedData && !!relatedData.length &&
+    relatedData && relatedData.length &&
     <div className="post-related">
       <div className="post-related__header">
         <TitleLine size='small'><strong>関連記事</strong></TitleLine>

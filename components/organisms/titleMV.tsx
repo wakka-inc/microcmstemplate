@@ -9,7 +9,7 @@ function TitleMV({title, description}: {
       </div>
       <div className="container">
         <h1 className="title-mv__h1">{title}</h1>
-        { !!description && <p className="title-mv__desc">{description}</p> }
+        { description && <p className="title-mv__desc">{description}</p> }
       </div>
     </div>
   )

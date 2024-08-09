@@ -12,7 +12,7 @@ async function LinkCard({article}: {article: Article}) {
   const postLink = `/${article.id}`
 
   const settingsData = await getData('settings/')
-  const siteName = settingsData.siteName || defaultSettings.name
+  const siteName = settingsData.siteName || defaultSettings.siteName
   const favicon = settingsData.favicon
   const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
 

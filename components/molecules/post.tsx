@@ -43,9 +43,9 @@ function Post(article: Article, isPriority?: boolean) {
         </div>
 
         {/** Author */}
-        { !!author && !!author.name &&
+        { author && author.name &&
           <div className="postitem__author">
-            { !!author.avatar &&
+            { author.avatar &&
               <Link href={authorLink} className="postitem__author__avatar">
                 <Image
                   src={author.avatar.url}
@@ -63,7 +63,7 @@ function Post(article: Article, isPriority?: boolean) {
             </div>
           </div>
         }
-        { !!author && !author.name &&
+        { author && !author.name &&
           <AuthorOnClient
             authorId={author.id}
             formatDate={formatDate}

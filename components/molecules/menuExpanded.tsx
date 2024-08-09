@@ -17,7 +17,8 @@ async function MenuExpanded() {
   const menusData = await getData(endpointMenus)
   const menuMain = menusData.menuMain
   const menuOther = menusData.menuOther
-
+  const social = settingsData.social
+  
   return(
     <div className={'menu-expanded'}>
       <div className="menu-expanded__body">
@@ -25,7 +26,7 @@ async function MenuExpanded() {
           <div className="container">
             <div className="menu-expanded__main__inner">
               <div className="menu-expaned__left">
-                { !!menuMain.length && 
+                { menuMain?.length && 
                   <ul className='menu-expanded__list menu-expanded--main'>
                     { menuMain.map((link: Button, index: number) => 
                       <li key={index} className='menu-expanded__link'>
@@ -39,7 +40,7 @@ async function MenuExpanded() {
               <Divider type={'slash'} className={'sp'} />
 
               <div className="menu-expaned__right">
-                { !!menuOther.length && 
+                { menuOther?.length && 
                   <ul className='menu-expanded__list menu-expanded--other'>
                     { menuOther.map((link: Button, index: number) => 
                       <li key={index} className='menu-expanded__link'>
@@ -53,11 +54,11 @@ async function MenuExpanded() {
           </div>
         </div>
 
-        { !!settingsData.social.length &&
+        { social?.length &&
           <div className="menu-expanded__footer">
             <div className="container">
               <div className="menu-expanded__footer__inner">
-                <Social list={settingsData.social} size='xlarge' />
+                <Social list={social} size='xlarge' />
               </div>
             </div>
           </div>

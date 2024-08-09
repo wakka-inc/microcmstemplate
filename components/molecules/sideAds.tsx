@@ -34,7 +34,7 @@ function AdsItem(ads: Adsvertisment, isPriority?: boolean) {
 
 function SideAds({listAds, isPriority}: {listAds: Adsvertisment[], isPriority?: boolean }) {
   return (
-    listAds.length && listAds.map(ads => AdsItem(ads, isPriority))
+    listAds && listAds.length && listAds.map(ads => AdsItem(ads, isPriority))
   )
 }
 

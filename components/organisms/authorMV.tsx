@@ -32,7 +32,7 @@ async function AuthorMV({authorId, draftKey}: {
         <div className="author-mv__inner">
           <div className="author-mv__left">
 
-            { !!peopleData.avatar &&
+            { peopleData.avatar &&
               <div className="author-mv__avatar">
                 <div className="author-mv__avatar__img">
                   <Image
@@ -47,17 +47,17 @@ async function AuthorMV({authorId, draftKey}: {
             }
 
             <div className="author-mv__text">
-              { !!peopleData.name &&
+              { peopleData.name &&
                 <div className="author-mv__name">{peopleData.name}</div>
               }
-              { !!peopleData.description &&
+              { peopleData.description &&
                 <div className="author-mv__bio" dangerouslySetInnerHTML={{__html: peopleData.description}}></div>
               }
             </div>
           </div>
           <div className="author-mv__right">
             <div className="author-mv__info">
-            { !!postData.totalCount &&
+            { postData.totalCount &&
               <div className="author-mv__info__item">
                 <i className="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="black" >
@@ -68,7 +68,7 @@ async function AuthorMV({authorId, draftKey}: {
               </div>
               }
 
-              { !!peopleData.email &&
+              { peopleData.email &&
                 <div className="author-mv__info__item">
                     <i className="icon">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="black" >

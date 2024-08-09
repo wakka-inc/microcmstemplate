@@ -1,4 +1,5 @@
 import Post from '@/components/molecules/post'
+import Divider from '@/components/atoms/divider'
 import getData from '@/utils/getData'
 import { Article } from '@/utils/postDataType'
 import { defaultSettings } from '@/contants/defaultSettings'
@@ -12,14 +13,14 @@ async function BlogMV() {
   const articles = postsData.contents
 
   return(
+    articles?.length &&
     <>
-      { !!articles && articles.length &&
-        <div className="blog-mv">
-            <div className="blog-mv__3col">
-              { articles.map((article: Article) => Post(article, true)) }
-            </div>
+      <div className="blog-mv">
+        <div className="blog-mv__3col">
+          { articles.map((article: Article) => Post(article, true)) }
         </div>
-      }
+      </div>
+      <Divider type={'slash'} />
     </>
   )
 }

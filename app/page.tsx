@@ -1,5 +1,4 @@
 import BlogMV from '@/components/organisms/blogMV'
-import Divider from '@/components/atoms/divider'
 import Sidebar from '@/components/organisms/sidebar'
 import PostRecent from '@/components/organisms/postRecent'
 import Pagination from '@/components/molecules/pagination'
@@ -52,7 +51,6 @@ export default async function Page() {
         <div className="main__inner">
           <div className="main__content">
             <BlogMV />
-            <Divider type={'slash'} />
             <PostRecent title='新着記事' articles={postsData.contents} />
             <Pagination totalCount={postsData.totalCount} pageCurrent={1} isRouteMV={true} />
           </div>

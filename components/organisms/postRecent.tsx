@@ -13,14 +13,14 @@ function PostRecent({title, articles}: {
     <div className="postrecent">
 
       { /** Title */
-        !!title && 
+        title && 
         <div className="postrecent__header">
           <TitleLine>{title}</TitleLine>
         </div>
       }
 
       { /** Post Recent */
-        !!articles && !!articles.length ?
+        articles && articles.length ?
         <div className="postrecent__list">
           { articles.map((article: Article) => Post(article)) }
         </div>

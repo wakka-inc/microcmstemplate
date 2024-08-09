@@ -46,7 +46,7 @@ function ArticleAuthor({postData}: {postData: Article}) {
         }
         
         <div className="article__info">
-          { !!category &&
+          { category &&
             <div className="article__category">
               <i className="icon" dangerouslySetInnerHTML={{__html: dataIcons.category }}></i>
               <span className="article__category__list">
@@ -59,7 +59,7 @@ function ArticleAuthor({postData}: {postData: Article}) {
             </div>
           }
 
-          { !!tags?.length &&
+          { tags?.length &&
             <div className="article__tags">
               <i className="icon" dangerouslySetInnerHTML={{__html: dataIcons.tag}}></i>
               <span className="article__tags__list">
@@ -75,7 +75,7 @@ function ArticleAuthor({postData}: {postData: Article}) {
             </div>
           }
 
-          { !!formatDate &&
+          { formatDate &&
             <div className="article__date">
               <i className="icon" dangerouslySetInnerHTML={{__html: dataIcons.time}}></i>
               <span>{formatDate}</span>
@@ -96,7 +96,7 @@ function PostInfoBottom({postData} : {postData: Article}) {
       <Divider type={'slash'} />
       
       <div className="article__infobottom__inner">
-        {!!category && 
+        { category && 
           <div className="article__infobottom__category">
             <i className="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="black">
@@ -113,7 +113,7 @@ function PostInfoBottom({postData} : {postData: Article}) {
           </div>
         }
 
-        { !!tags?.length &&
+        { tags?.length &&
           <div className="article__infobottom__tags">
             <i className="icon" dangerouslySetInnerHTML={{__html: dataIcons.tag}}></i>
             <span className="article__infobottom__tags__list">
@@ -151,7 +151,7 @@ function ExpandedContent({postData, settingData}: {postData: Article, settingDat
     }
     else if (content.fieldId == 'contentLinkCard') {
       const linkCard = content.linkCard
-      if (!!linkCard) {
+      if (linkCard) {
         return <LinkCard article={linkCard} />
       }
     }
@@ -173,7 +173,7 @@ async function ArticleDetail({ postId, draftKey }: {
   return (
     <article className="article">
       <div className="article__mv">
-        { !!microData.title &&
+        { microData.title &&
           <h1 className="article__title">{microData.title}</h1>
         }
         
@@ -182,7 +182,7 @@ async function ArticleDetail({ postId, draftKey }: {
           <PostShareTop socialShares={settingsData.articleSocialShares} />
         </div>
 
-        { !!thumbnail &&
+        { thumbnail &&
           <div className="article__preview">  
             <Image
               src={thumbnail.url}

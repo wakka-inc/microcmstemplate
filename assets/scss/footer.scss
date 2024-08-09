@@ -8,9 +8,6 @@
     align-items: center;
     padding: 4rem 0;
   }
-  &__logo {
-    margin-bottom: 3rem;
-  }
   &__main {
     display: flex;
     flex-direction: column;
@@ -19,9 +16,13 @@
     min-width: 70rem;
     padding-top: 1rem;
     padding-bottom: 2rem;
+    margin-top: 3rem;
     margin-bottom: 3rem;
     border: solid rgba(#fff, .2);
     border-width: 1px 0;
+    &:empty {
+      display: none;
+    }
   }
   &__copyright {
     font-size: 1.2rem;

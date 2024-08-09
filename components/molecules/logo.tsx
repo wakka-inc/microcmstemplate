@@ -5,7 +5,7 @@ import { ImageThumbnail } from '@/utils/postDataType'
 function Logo({logo, alt} : {logo: ImageThumbnail, alt: string}) {
   return (
     <div className="logo">
-      { !!logo && 
+      { logo && 
         <Link href={'/'}>
           <Image
             src={logo.url}

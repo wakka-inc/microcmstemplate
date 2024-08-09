@@ -26,7 +26,7 @@ function Hamburger() {
   const inputSearchClose = () => {
     const toggleSearch = document.getElementById('toggle-search__btn')
     const inputSearch = document.getElementById('header__inputsearch')
-    if (!!toggleSearch && !!inputSearch) {
+    if (toggleSearch && inputSearch) {
       inputSearch.classList.contains('inputsearch--active') && toggleSearch.click()
     }
   }

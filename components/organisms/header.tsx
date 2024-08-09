@@ -1,21 +1,22 @@
 import Btn from '@/components/atoms/btn'
 import Hamburger from '@/components/molecules/hamburger'
 import Logo from '@/components/molecules/logo'
-import BtnIcon from '@/components/atoms/btnIcon'
 import DrawLineCanvas from '@/utils/drawLineCanvas'
 import SetupHeaderMini from '@/utils/setupHeaderMini'
 import getData from '@/utils/getData'
 import { Button } from '@/utils/postDataType'
 import InputSearch from '@/components/molecules/inputSearch'
 import ToggleSearch from '../molecules/toggleSearch'
+import { defaultSettings } from '@/contants/defaultSettings'
+import defaultLogo from '@/public/images/logo-mag.svg'
 
 
 function RenderButton(btn: Button, index: string) {
   const type = btn.type ? (btn.type[0] ? btn.type[0] : '') : ''
   return (
-    !!btn.name &&
+    btn.name &&
       <Btn href={btn.href} _blank={btn.openNewTab} type={type} key={btn.name}>
-        { !!btn.icon && <i className="icon" dangerouslySetInnerHTML={{__html: btn.icon}}></i> }
+        { btn.icon && <i className="icon" dangerouslySetInnerHTML={{__html: btn.icon}}></i> }
         <span>{btn.name}</span>
       </Btn>
   )
@@ -36,7 +37,12 @@ async function Header() {
 
   const menusEndpoint = 'menus/'
   const menusData = await getData(menusEndpoint)
-  const menuOnHeader = menusData.menuOnHeader
+  const menuOnHeader = menusData.menuOnHeader 
+  const logoHeader = settingsData.logoHeader || {
+    url: defaultLogo.src,
+    width: defaultLogo.width,
+    height: defaultLogo.height,
+  }
   
   return (
     <header id="header" className="header">
@@ -46,13 +52,15 @@ async function Header() {
       <div className="header__container">
         <div className="header__inner">
           <div className="header__left">
-            <Hamburger />
+            { (menusData?.menuMain || menusData?.menuOther) &&
+              <Hamburger />
+            }
           </div>
           <div className="header__center">
-            <Logo logo={settingsData.logoHeader} alt={settingsData.siteName} />
+            <Logo logo={logoHeader} alt={settingsData.siteName || defaultSettings.siteName} />
           </div>
           <div className="header__right">
-            { !!menuOnHeader.length &&
+            { menuOnHeader?.length &&
               <div className="btn-group">
                 { menuOnHeader.map((btn: Button, index: string) => RenderButton(btn, index)) }
               </div>

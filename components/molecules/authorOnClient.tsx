@@ -13,7 +13,7 @@ function AuthorOnClient({authorId, formatDate, apiKey, serviceDomain}: {
 }) {
   
   const endpoint = `people/${authorId}/`
-  const url = `${serviceDomain}${endpoint}`
+  const url = `https://${serviceDomain}.microcms.io/api/v1/${endpoint}`
 
   const [author, setAuthor] = useState<Contributed>()
   const [authorLink, setAuthorLink] = useState('')
@@ -37,9 +37,9 @@ function AuthorOnClient({authorId, formatDate, apiKey, serviceDomain}: {
   }, [])
 
   return (
-    !!author &&
+    author &&
     <div className="postitem__author">
-      { !!author.avatar &&
+      { author.avatar &&
         <Link href={authorLink} className="postitem__author__avatar">
           <Image
             src={author.avatar.url}

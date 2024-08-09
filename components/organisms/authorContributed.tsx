@@ -13,7 +13,7 @@ function AuthorItem(authorData: Contributed) {
   return (
     <div className="author-contributed__item" key={authorData.id}>
       <div className="author-contributed__avatar">
-        { !!authorData.avatar && 
+        { authorData.avatar && 
           <Link href={authorLink} className="author-contributed__img">
             <Image
               src={authorData.avatar.url}

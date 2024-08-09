@@ -2,7 +2,9 @@ import Social from '@/components/molecules/social'
 import FooterMenu from '@/components/molecules/footerMenu'
 import DrawLineCanvas from '@/utils/drawLineCanvas'
 import getData from '@/utils/getData'
+import { defaultSettings } from '@/contants/defaultSettings'
 import Logo from '@/components/molecules/logo'
+import defaultLogo from '@/public/images/logo-mag-white.svg'
 
 
 async function Footer() {
@@ -12,7 +14,12 @@ async function Footer() {
   }
 
   const settingsData = await getData('settings/')
-  const logoFooter = settingsData.logoFooter
+  const logoFooter = settingsData.logoFooter || settingsData.logoHeader || {
+    url: defaultLogo.src,
+    width: defaultLogo.width,
+    height: defaultLogo.height,
+  }
+  const logoAlt = settingsData.siteName || defaultSettings.siteName
   const copyright = settingsData.copyright || ''
   
   return (
@@ -23,7 +30,7 @@ async function Footer() {
         <div className="footer__inner">
           <div className="footer__logo">
             <div className="logo">
-              { !!logoFooter && <Logo logo={logoFooter} alt={settingsData.siteName} /> }
+              { logoFooter && <Logo logo={logoFooter} alt={logoAlt} /> }
             </div>
           </div>
           <div className="footer__main">
