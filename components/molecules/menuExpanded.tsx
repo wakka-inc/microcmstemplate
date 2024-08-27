@@ -26,11 +26,11 @@ async function MenuExpanded() {
           <div className="container">
             <div className="menu-expanded__main__inner">
               <div className="menu-expaned__left">
-                { menuMain?.length && 
+                { !!menuMain?.length &&
                   <ul className='menu-expanded__list menu-expanded--main'>
                     { menuMain.map((link: Button, index: number) => 
                       <li key={index} className='menu-expanded__link'>
-                        <Link href={link.href} target={link.openNewTab ? '_blank' : undefined}>{link.name}</Link>
+                        <Link href={link.href || '#'} target={link.openNewTab ? '_blank' : undefined}>{link.name}</Link>
                       </li>
                     )}
                   </ul>
@@ -40,11 +40,11 @@ async function MenuExpanded() {
               <Divider type={'slash'} className={'sp'} />
 
               <div className="menu-expaned__right">
-                { menuOther?.length && 
+                { !!menuOther?.length &&
                   <ul className='menu-expanded__list menu-expanded--other'>
                     { menuOther.map((link: Button, index: number) => 
                       <li key={index} className='menu-expanded__link'>
-                        <Link href={link.href} target={link.openNewTab ? '_blank' : undefined}>{link.name}</Link>
+                        <Link href={link.href || '#'} target={link.openNewTab ? '_blank' : undefined}>{link.name}</Link>
                       </li>
                     )}
                   </ul>
@@ -54,7 +54,7 @@ async function MenuExpanded() {
           </div>
         </div>
 
-        { social?.length &&
+        { !!social?.length &&
           <div className="menu-expanded__footer">
             <div className="container">
               <div className="menu-expanded__footer__inner">

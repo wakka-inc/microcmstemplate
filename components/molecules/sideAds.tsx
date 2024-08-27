@@ -4,7 +4,8 @@ import { Adsvertisment } from '@/utils/postDataType'
 
 
 function AdsItem(ads: Adsvertisment, isPriority?: boolean) {
-  const image = ads.image
+  const imageAds = ads.image
+  const linkAds = ads.link
   const embedCode = ads.embedCode
   const linkTarget = ads.openNewTab ? '_blank' : undefined
 
@@ -12,29 +13,40 @@ function AdsItem(ads: Adsvertisment, isPriority?: boolean) {
     !!embedCode &&
     <div className="sidebar__ads__embeded" dangerouslySetInnerHTML={{__html: embedCode}}></div>
   )
-  const imageRender = () => (
-    !!image &&
-    <Link href={ads.link} target={linkTarget} className="sidebar__ads__img">
-      <Image
-        src={image.url}
-        alt={ads.name}
-        width={320}
-        height={Math.round(image.height * 320 / image.width)}
-        priority={isPriority}
-      />
-    </Link>
+  const bannerRender = () => (
+    !!imageAds &&
+      !!linkAds ?
+        <Link href={linkAds} target={linkTarget} className="sidebar__ads__img">
+          <Image
+            src={imageAds.url}
+            alt={ads.name}
+            width={320}
+            height={Math.round(imageAds.height * 320 / imageAds.width)}
+            priority={isPriority}
+          />
+        </Link>
+        :
+        <span className="sidebar__ads__img">
+          <Image
+            src={imageAds.url}
+            alt={ads.name}
+            width={320}
+            height={Math.round(imageAds.height * 320 / imageAds.width)}
+            priority={isPriority}
+          />
+        </span>
   )
 
   return (
     <div className="sidebar__ads__item">
-      { !!embedCode ? codeRender() : imageRender() }
+      { !!embedCode ? codeRender() : bannerRender() }
     </div>
   )
 }
 
 function SideAds({listAds, isPriority}: {listAds: Adsvertisment[], isPriority?: boolean }) {
   return (
-    listAds && listAds.length && listAds.map(ads => AdsItem(ads, isPriority))
+    !!listAds?.length && listAds.map(ads => AdsItem(ads, isPriority))
   )
 }
 

@@ -60,7 +60,7 @@ export type Button = {
   href: string,
   openNewTab: boolean,
 }
-export type Inquiries = {
+export type InquiriesType = {
   isShow: boolean,
   title?: string,
   description?: string,

@@ -19,16 +19,16 @@
     width: 100%;
     height: 100%;
     background: url(../images/bg-line-1x.png) repeat;
-    opacity: .15;
+    opacity: .09;
   }
   &::after {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
-    height: 3.1rem;
+    height: 3rem;
     width: 100%;
-    background-color: rgba(#000, .2);
+    background-color: rgba(#000, .1);
     border: 1.5rem solid #fff;
     transform-origin: center center;
     transform: translate3d(0, calc(50dvh - 1.5rem), 0) rotate(-45deg);

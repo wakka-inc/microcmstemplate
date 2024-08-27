@@ -14,7 +14,7 @@ async function FooterMenu() {
         <ul className="footer-menu__list">
           { menusFooter.map((link: Button, index: number) =>
             <li className="footer-menu__item" key={index}>
-              <Link href={link.href} target={link.openNewTab ? '_blank' : undefined}>{link.name}</Link>
+              <Link href={link.href || '#'} target={link.openNewTab ? '_blank' : undefined}>{link.name}</Link>
             </li>
           )}
         </ul>

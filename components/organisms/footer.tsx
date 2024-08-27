@@ -14,15 +14,13 @@ async function Footer() {
   }
 
   const settingsData = await getData('settings/')
-  const logoFooter = settingsData.logoFooter || settingsData.logoHeader || {
-    url: defaultLogo.src,
-    width: defaultLogo.width,
-    height: defaultLogo.height,
-  }
+  const logoFooter = settingsData.logoFooter
+  const social = settingsData.social
   const logoAlt = settingsData.siteName || defaultSettings.siteName
   const copyright = settingsData.copyright || ''
   
   return (
+    (!!logoFooter || !!social || !!copyright) &&
     <footer id="footer" className="footer">
       <DrawLineCanvas id="drawline-footer" option={drawlineOption} />
 
@@ -34,7 +32,7 @@ async function Footer() {
             </div>
           </div>
           <div className="footer__main">
-            { settingsData.social && <Social list={settingsData.social} size="large" color="white" /> }
+            { social && <Social list={social} size="large" color="white" /> }
             <FooterMenu />
           </div>
           <div className="footer__copyright">{copyright}</div>

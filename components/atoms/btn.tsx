@@ -2,7 +2,7 @@ import Link from "next/link"
 
 function Btn({ children, href = '#', _blank = false, type = 'border', size = 'normal' }: {
   children: React.ReactNode,
-  href: string,
+  href?: string,
   _blank?: boolean,
   type?: string,
   size?: string,

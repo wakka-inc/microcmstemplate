@@ -30,6 +30,7 @@
     &:active {
       .sns__item__inner {
         background-color: #000;
+        color: #fff;
       }
       svg {
         fill: #fff;
@@ -73,6 +74,9 @@
       svg {
         fill: #fff;
       }
+      &__inner {
+        color: #fff;
+      }
       &:hover {
         .sns__item__inner {
           background-color: rgba(#fff, 0.08);
@@ -81,6 +85,7 @@
       &:active {
         .sns__item__inner {
           background-color: #fff;
+          color: #000;
         }
         svg {
           fill: #000;

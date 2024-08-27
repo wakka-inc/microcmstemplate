@@ -14,18 +14,25 @@ async function Sidebar() {
 
   return (
     <aside className="sidebar">
+      { !!adsTop?.length &&
       <div className="sidebar__ads sidebar--top">
         <SideAds listAds={adsTop} isPriority={false} />
       </div>
+      }
       
       <div className="sidebar__inputsearch">
         <InputSearch />
       </div>
       <SideRanking />
-      <Divider className="pc" />
-      <div className="sidebar__ads sidebar--bottom">
-        <SideAds listAds={adsBottom} />
-      </div>
+      
+      { !!adsBottom?.length &&
+      <>
+        <Divider className="pc" />
+        <div className="sidebar__ads sidebar--bottom">
+          <SideAds listAds={adsBottom} />
+        </div>
+      </>
+      }
     </aside>
   )
 }

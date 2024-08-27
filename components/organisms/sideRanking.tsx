@@ -8,7 +8,7 @@ async function SideRanking() {
   const rankingData = sidebarData.postRanking
 
   return (
-    rankingData &&
+    !!rankingData?.length &&
     <div className="sideranking">
       <div className="sideranking__header">
         <div className="title">RANKING</div>

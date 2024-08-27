@@ -132,7 +132,6 @@ Next.jsアプリをデプロイする最も簡単な方法は、[Vercel Platform
         - Logo Header: ヘッダーに表示されるロゴ。
         - Footer logo: フッターに表示されるロゴ。
         - Recent Post Number：TOPページに表示されている投稿数
-        - Related Post Number：詳細投稿に表示される関連投稿の数。
         - Ranking Post：ランキングされた投稿を表示。手動で設定（自動では設定されません）。
         - Adsense - Sidebar Top：サイドバー上部に広告を表示。複数の広告を表示できます。
         - Adsense - Sidebar Bottom：サイドバー下部に広告を表示。複数の広告を表示することができます。

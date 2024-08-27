@@ -37,14 +37,13 @@ async function Header() {
 
   const menusEndpoint = 'menus/'
   const menusData = await getData(menusEndpoint)
-  const menuOnHeader = menusData.menuOnHeader 
-  const logoHeader = settingsData.logoHeader || {
-    url: defaultLogo.src,
-    width: defaultLogo.width,
-    height: defaultLogo.height,
-  }
+  const menuMain = menusData.menuMain
+  const menuOther = menusData.menuOther
+  const menuOnHeader = menusData.menuOnHeader
+  const logoHeader = settingsData.logoHeader
   
   return (
+    (!!logoHeader || !!menuMain?.length || !!menuOther?.length || !!menuOnHeader?.length) &&
     <header id="header" className="header">
       <SetupHeaderMini />
       <DrawLineCanvas id="drawline-header" option={drawlineOption} />
@@ -52,15 +51,13 @@ async function Header() {
       <div className="header__container">
         <div className="header__inner">
           <div className="header__left">
-            { (menusData?.menuMain || menusData?.menuOther) &&
-              <Hamburger />
-            }
+            { (!!menuMain?.length || !!menuOther?.length) && <Hamburger /> }
           </div>
           <div className="header__center">
-            <Logo logo={logoHeader} alt={settingsData.siteName || defaultSettings.siteName} />
+            { !!logoHeader && <Logo logo={logoHeader} alt={settingsData.siteName || defaultSettings.siteName} /> }
           </div>
           <div className="header__right">
-            { menuOnHeader?.length &&
+            { !!menuOnHeader?.length &&
               <div className="btn-group">
                 { menuOnHeader.map((btn: Button, index: string) => RenderButton(btn, index)) }
               </div>
