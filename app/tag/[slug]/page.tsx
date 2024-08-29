@@ -24,6 +24,8 @@ export async function generateMetadata({params}: Props, parent: ResolvingMetadat
   
   const title = `《${tagData.name}》タグ一覧 | ${settingsData.siteName}`
   const previousPreview = parentData.openGraph?.images || []
+  const favicon = settingsData.favicon
+  const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
 
   return {
     title: title,
@@ -32,6 +34,14 @@ export async function generateMetadata({params}: Props, parent: ResolvingMetadat
       title: title,
       images: [...previousPreview],
       type: 'article',
+    },
+    icons: {
+      icon: [
+        {
+          url: faviconUrl,
+          href: faviconUrl,
+        }
+      ]
     }
   }
 }

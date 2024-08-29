@@ -40,7 +40,7 @@ async function AuthorContributed({postId}: {postId: string}) {
 
   return (
     <div className="author-contributed">
-      { contributed && contributed.length &&
+      { !!contributed?.length &&
         <>
           <div className="author-contributed__header">
             <TitleLine size='small'><strong>この記事に携わった人</strong></TitleLine>

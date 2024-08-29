@@ -23,16 +23,27 @@ export async function generateMetadata({params, searchParams}: Props, parent: Re
   const postEndpoint = `blogs/${params.pid}/`
   const postData = await getData(postEndpoint)
   const title = `${postData.title} | ${settingsData.siteName}`
+  const description = `${postData.description || ''}`
   const previousPreview = parentData.openGraph?.images || []
   const sitePreviews = postData.thumbnail ? [postData.thumbnail] : previousPreview
+  const favicon = settingsData.favicon
+  const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
 
   return {
     title: title,
-    description: ' ',
+    description: description,
     openGraph: {
       title: title,
       images: [...sitePreviews],
       type: 'article',
+    },
+    icons: {
+      icon: [
+        {
+          url: faviconUrl,
+          href: faviconUrl,
+        }
+      ]
     }
   }
 }

@@ -23,6 +23,8 @@ export async function generateMetadata({params, searchParams}: Props, parent: Re
 
   const title = `《${searchParams.q}》の検索結果 | ${settingsData.siteName}`
   const previousPreview = parentData.openGraph?.images || []
+  const favicon = settingsData.favicon
+  const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
 
   return {
     title: title,
@@ -31,6 +33,14 @@ export async function generateMetadata({params, searchParams}: Props, parent: Re
       title: title,
       images: [...previousPreview],
       type: 'article',
+    },
+    icons: {
+      icon: [
+        {
+          url: faviconUrl,
+          href: faviconUrl,
+        }
+      ]
     }
   }
 }

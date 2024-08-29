@@ -20,7 +20,7 @@ function PostRecent({title, articles}: {
       }
 
       { /** Post Recent */
-        articles && articles.length ?
+        !!articles?.length ?
         <div className="postrecent__list">
           { articles.map((article: Article) => Post(article)) }
         </div>

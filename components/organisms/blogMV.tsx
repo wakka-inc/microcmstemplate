@@ -13,7 +13,7 @@ async function BlogMV() {
   const articles = postsData.contents
 
   return(
-    articles?.length &&
+    !!articles?.length &&
     <>
       <div className="blog-mv">
         <div className="blog-mv__3col">

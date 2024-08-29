@@ -59,7 +59,7 @@ function ArticleAuthor({postData}: {postData: Article}) {
             </div>
           }
 
-          { tags?.length &&
+          { !!tags?.length &&
             <div className="article__tags">
               <i className="icon" dangerouslySetInnerHTML={{__html: dataIcons.tag}}></i>
               <span className="article__tags__list">
@@ -113,7 +113,7 @@ function PostInfoBottom({postData} : {postData: Article}) {
           </div>
         }
 
-        { tags?.length &&
+        { !!tags?.length &&
           <div className="article__infobottom__tags">
             <i className="icon" dangerouslySetInnerHTML={{__html: dataIcons.tag}}></i>
             <span className="article__infobottom__tags__list">
