@@ -165,42 +165,41 @@ BASE_URL=xxxxxxxxxxxxxxxx
 DATA_REVALIDATE=0
 ````
 
-``MICROCMS_API_KEY``  
+`MICROCMS_API_KEY`  
 Obtained from "Service Settings > API Key" in the microCMS administration page.
 
-```MICROCMS_SERVICE_DOMAIN``.  
+`MICROCMS_SERVICE_DOMAIN`.  
 The xxxxxxxxxx part of the microCMS administration page URL (https://xxxxxxxx.microcms.io).
 
 `BASE_URL`.  
 The URL to deploy to. It is described from the protocol.
 
-SAMPLE : ````` .  
-````
-Development: http://localhost:3000/
-Production: https://your-site.com/
-SAMPLE : ```
 
-``DATA_REVALIDATE=0``  
+SAMPLE :  
+- Development: `http://localhost:3000/`
+- Production: `https://your-site.com/`
+
+`DATA_REVALIDATE=0`  
 Clear the data cache and reacquire the latest data.
 This is an optional statement, so delete it if you don't need it.
 
 ## Getting Started
 
-First, start the development environment: 1.
+First, start the development environment:  
 
-Install the package
+1. Install the package
 
-Install the package: ```bash
+```bash
 npm install
-2.
+```
 
-Start the development environment.
+2. Start the development environment.
 
-Start the development environment ```bash
+```bash
 npm run dev
-dev ```` 3.
+```
 
-Access the development environment  
+3. Access the development environment.  
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
