@@ -106,6 +106,9 @@
       stroke: rgba(#000, .7);
     }
   }
+  &__bio {
+    white-space: pre-line;
+  }
   .sns {
     &__list {
       justify-content: flex-start;
