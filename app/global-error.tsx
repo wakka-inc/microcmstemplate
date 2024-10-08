@@ -3,7 +3,6 @@
 import image502 from '@/public/images/502.svg'
 import image502_sp from '@/public/images/502-sp.svg'
 import Image from 'next/image'
-import TitleLine from '@/components/atoms/titleline'
 import { Noto_Sans_JP } from 'next/font/google'
 import { defaultSettings } from '@/contants/defaultSettings'
 
@@ -11,13 +10,15 @@ const noto = Noto_Sans_JP({
   subsets: ['latin']
 })
 
-export default function GlobalError({error, reset}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}){
-  const title = defaultSettings.error502Title
+export default function GlobalError() {
+  const pageDescription = defaultSettings.error502Title
+  const title = defaultSettings.serverError
+
   return (
     <html lang="ja">
+      <head>
+        <title>{title}</title>
+      </head>
       <body className={noto.className}>
         <main id="main" className={'main'} style={{paddingTop: 0}}>
 
@@ -42,7 +43,7 @@ export default function GlobalError({error, reset}: {
                         className='sp'
                         />
                     </div>
-                    <TitleLine size="small">{title}</TitleLine>
+                    <p className='text-center' dangerouslySetInnerHTML={{ __html: pageDescription }}></p>
                   </div>
                 </div>
               </div>

@@ -125,7 +125,7 @@ function DrawLineCanvas(props: {
         ctx.closePath()
 
         /** Redraw */
-        if( line.yBegin >= canvasHeight + line.chieucaoLine ) {
+        if ( line.yBegin >= canvasHeight + line.chieucaoLine ) {
           line.yBegin = line.yInit
           line.tBegin = +new Date()
         }

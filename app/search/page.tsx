@@ -5,6 +5,7 @@ import TitleMV from '@/components/organisms/titleMV'
 import { defaultSettings } from '@/contants/defaultSettings'
 import getData from '@/utils/getData'
 import { ResolvingMetadata } from 'next'
+import Error from '@/app/error'
 
 type Props = {
   params: {
@@ -20,15 +21,24 @@ export async function generateMetadata({params, searchParams}: Props, parent: Re
   const settingsEndpoint = 'settings/'
   const settingsData = await getData(settingsEndpoint)
   const parentData = await(parent)
-
-  const title = `《${searchParams.q}》の検索結果 | ${settingsData.siteName}`
   const previousPreview = parentData.openGraph?.images || []
   const favicon = settingsData.favicon
   const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
 
+  // Title & description
+  let titlePage = `《${searchParams.q}》の検索結果`
+  let description = `《${searchParams.q}》の検索結果ページです。`
+  let siteName = `| ${settingsData.siteName}`
+  if (settingsData.status === 401) {
+    titlePage = defaultSettings.serverError
+    description = ''
+    siteName = ''
+  }
+  const title = `${titlePage} ${siteName}`
+
   return {
     title: title,
-    description: `《${searchParams.q}》の検索結果ページです。`,
+    description: description,
     openGraph: {
       title: title,
       images: [...previousPreview],
@@ -57,7 +67,12 @@ async function SearchPage({ params, searchParams }: Props) {
   const query = `q=${paramQuery}`
   const postsEndpoint = `blogs?${query}&${fields}&${limitOffset}`
   const postsData = await getData(postsEndpoint)
- 
+
+  // [MICROCMS_API_KEY] not valid
+  if (postsData.status === 401) {
+    return <Error />
+  }
+  
   return (
     <>
       <TitleMV title={'検索'} description={paramQuery} /> 

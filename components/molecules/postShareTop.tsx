@@ -12,7 +12,7 @@ export default function PostShareTop({ socialShares } : { socialShares: string[]
   
   const [socialList, setSocialList] = useState([] as TSocial[])
   useEffect(() => {
-    const list = socialShares.map(name => {
+    const list = socialShares && socialShares.map(name => {
       return {
         type: 'share',
         name: [name],

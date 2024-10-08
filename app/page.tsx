@@ -4,6 +4,7 @@ import PostRecent from '@/components/organisms/postRecent'
 import Pagination from '@/components/molecules/pagination'
 import { defaultSettings } from '@/contants/defaultSettings'
 import getData from '@/utils/getData'
+import Error from '@/app/error'
 import defaultImagePreview from '@/public/images/image-preview.png'
 
 
@@ -12,7 +13,7 @@ export async function generateMetadata() {
   const settingsData = await getData('settings/')
   const title = settingsData.siteTitle || defaultSettings.title
   const description = settingsData.siteDescription || defaultSettings.description
-  const sitePreviews = settingsData.sitePreview || {url: defaultImagePreview.src}
+  const sitePreviews = settingsData.sitePreview ? [settingsData.sitePreview] : [{url: defaultImagePreview.src}]
   const favicon = settingsData.favicon
   const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
 
@@ -21,7 +22,7 @@ export async function generateMetadata() {
     description: description,
     openGraph: {
       title: title,
-      images: [sitePreviews],
+      images: [...sitePreviews],
       type: 'website',
     },
     icons: {
@@ -38,12 +39,32 @@ export async function generateMetadata() {
 
 export default async function Page() {
   const settingsData = await getData('settings/')
+
+  /**Get 3 feature posts */
+  const f_filters = `filters=featurePost[equals]true`
+  const f_limitOffset = `limit=3`
+  const f_postsEndpoint = `blogs/?fields=id&${f_limitOffset}&${f_filters}`
+  const f_postsData = await getData(f_postsEndpoint)
+  const f_articles = f_postsData.contents
+  
+  let filtersNotFeaturePosts = `filters=`
+  f_articles.map( (data:any, i:number) => {
+    if (i > 0) filtersNotFeaturePosts += '[and]'
+    filtersNotFeaturePosts += 'id[not_equals]' + data.id
+  })
+
+  /** Get post without feature posts */
   const fields = defaultSettings.queryFields
   const postLimit = settingsData.postLimit || defaultSettings.postLimit
   const MVpostLimit = defaultSettings.postMainVisualLimit
   const limitOffset = `limit=${postLimit}&offset=${MVpostLimit}`
-  const postsEndpoint = `blogs/?${fields}&${limitOffset}`
+  const postsEndpoint = `blogs/?${fields}&${limitOffset}&${filtersNotFeaturePosts}`
   const postsData = await getData(postsEndpoint)
+
+  // [MICROCMS_API_KEY] not valid
+  if (postsData.status === 401) {
+    return <Error />
+  }
   
   return (
     <div className="main__wrapper page--home">

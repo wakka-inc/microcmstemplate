@@ -18,6 +18,7 @@ async function Pagination({ totalCount = 0, pageCurrent = 1, basePath = '', q, i
   const pages = Array.from({ length: pagesCount }).map((_, i) => i + 1)
   const pagesFirstLast = ['first', ...pages, 'last']
 
+  /* RENDER EACH ITEM **/
   function RenderItem(page: number|string) {
 
     /** CASE: first page */
@@ -72,7 +73,7 @@ async function Pagination({ totalCount = 0, pageCurrent = 1, basePath = '', q, i
   }
 
   return (
-    (pagesCount > 0) &&
+    (pagesCount > 0) && (pageCurrent <= pagesCount) &&
     <div className={`pagination pagination--count-${pagesCount}`}>
       <ul className="pagination__list">
         { pagesFirstLast.map(page => RenderItem(page) )}

@@ -5,7 +5,8 @@ import TitleMV from '@/components/organisms/titleMV'
 import { defaultSettings } from '@/contants/defaultSettings'
 import { ResolvingMetadata } from 'next'
 import getData from '@/utils/getData'
-
+import NotFound from '@/app/not-found'
+import Error from '@/app/error'
 
 type Props = {
   params: {
@@ -20,13 +21,26 @@ export async function generateMetadata({params}: Props, parent: ResolvingMetadat
   const settingsData = await getData('settings/')
   const tagEndpoint = `tag/${params.slug}/`
   const tagData = await getData(tagEndpoint)
-  
-  const title = `《${tagData.name}》タグ一覧 | ${settingsData.siteName}`
   const previousPreview = parentData.openGraph?.images || []
+  
+  // Title & description
+  let titlePage = `《${tagData.name}》タグ一覧`
+  let descriptionPage = `《${tagData.name}》タグの記事一覧ページです。`
+  let siteName = `| ${settingsData.siteName}`
+  if (tagData.status === 401) {
+    titlePage = defaultSettings.serverError
+    descriptionPage = ''
+    siteName = ''
+  }
+  else if (tagData.status === 404) {
+    titlePage = defaultSettings.pageNotFound
+    descriptionPage = ''
+  }
+  const title = `${titlePage} ${siteName}`
 
   return {
     title: title,
-    description: `《${tagData.name}》タグの記事一覧ページです。`,
+    description: descriptionPage,
     openGraph: {
       title: title,
       images: [...previousPreview],
@@ -53,7 +67,16 @@ async function TagPage({params}: Props) {
   const filters = `filters=tags[contains]${tagId}`
   const postsEndpoint = `blogs?${filters}&${fields}&${limitOffset}`
   const postsData = await getData(postsEndpoint)
-  
+
+  // [MICROCMS_API_KEY] not valid
+  if (postsData.status === 401) {
+    return <Error />
+  }
+  // Page not found
+  else if (postsData.status === 404) {
+    return <NotFound />
+  }
+
   return (
     <>
       <TitleMV title={tagName} />

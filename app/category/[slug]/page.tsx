@@ -5,6 +5,8 @@ import TitleMV from '@/components/organisms/titleMV'
 import { defaultSettings } from '@/contants/defaultSettings'
 import { ResolvingMetadata } from 'next'
 import getData from '@/utils/getData'
+import NotFound from '@/app/not-found'
+import Error from '@/app/error'
 
 type Props = {
   params: {
@@ -16,20 +18,37 @@ type Props = {
 }
 
 /** MetaData */
-export async function generateMetadata({params}: Props, parent: ResolvingMetadata) {
+export async function generateMetadata({params, searchParams}: Props, parent: ResolvingMetadata) {
   const settingsData = await getData('settings/')
   const catEndpoint = `category/${params.slug}/`
   const catData = await getData(catEndpoint)
   const parentData = await(parent)
-
-  const title = `《${catData.name}》カテゴリ一覧 | ${settingsData.siteName}`
   const previousPreview = parentData.openGraph?.images || []
   const favicon = settingsData.favicon
   const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
 
+  const draftKey = searchParams.draftKey
+  const endpoint = `category/${params.slug}${ draftKey ? ('?draftKey=' + draftKey) : ''}`
+  const microData = await getData(endpoint)
+
+  // Title & description
+  let titlePage = `《${catData.name}》カテゴリ一覧`
+  let descriptionPage = `《${catData.name}》カテゴリの記事一覧ページです。`
+  let siteName = `| ${settingsData.siteName}`
+  if (microData.status === 401) {
+    titlePage = defaultSettings.serverError
+    descriptionPage = ''
+    siteName = ''
+  }
+  else if (microData.status === 404) {
+    titlePage = defaultSettings.pageNotFound
+    descriptionPage = ''
+  }
+  const title = `${titlePage} ${siteName}`
+
   return {
     title: title,
-    description: `《${catData.name}》カテゴリの記事一覧ページです。`,
+    description: descriptionPage,
     openGraph: {
       title: title,
       images: [...previousPreview],
@@ -63,6 +82,15 @@ async function CategoryPage({ params, searchParams }: Props) {
   const filters = `filters=category[equals]${catId}`
   const postsEndpoint = `blogs?${filters}&${fields}&${limitOffset}`
   const postsData = await getData(postsEndpoint)
+  
+  // [MICROCMS_API_KEY] not valid
+  if (microData.status === 401) {
+    return <Error />
+  }
+  // Page not found
+  else if (microData.status === 404) {
+    return <NotFound />
+  }
  
   return (
     <>

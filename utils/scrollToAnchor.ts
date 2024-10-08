@@ -11,7 +11,7 @@ export default function scrolltoAnchor(event: any) {
     // c: change in value (gia tri 1)
     // d: duration (ms)
     easeOutQuad: function (x: any, t: number, b: number, c: number, d: number) {
-      return -c *(t/=d)*(t-2) + b;
+      return -c *(t/=d)*(t-2) + b
     }
   }
 
@@ -44,7 +44,7 @@ export default function scrolltoAnchor(event: any) {
 
   // THE LOOP
   const step = () => {
-    n++;
+    n++
 
     // Set current position
     // [current position] + [added distance]
@@ -66,11 +66,11 @@ export default function scrolltoAnchor(event: any) {
     request = requestAnimationFrame(step)
 
     // Remove [Animation frame]
-    if( huong == 'tuTrenXuong' ) {
-      if( yCur >= yEnd ) cancelStep()
+    if ( huong == 'tuTrenXuong' ) {
+      if ( yCur >= yEnd ) cancelStep()
     }
     else {
-      if( yCur <= yEnd ) cancelStep()
+      if ( yCur <= yEnd ) cancelStep()
     }
   }
 

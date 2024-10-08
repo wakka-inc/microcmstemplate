@@ -3,14 +3,24 @@
 import image500 from '@/public/images/500.svg'
 import image500_sp from '@/public/images/500-sp.svg'
 import Image from 'next/image'
-import TitleLine from '@/components/atoms/titleline'
 import { defaultSettings } from '@/contants/defaultSettings'
 
-export default function Error({error, reset}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}){
-  const title = defaultSettings.error500Title
+/** MetaData */
+export async function generateMetadata() {
+  const title = `${defaultSettings.error500Title}`
+  return {
+    title: title,
+    description: '',
+    openGraph: {
+      title: title,
+      type: 'article',
+    }
+  }
+}
+
+export default function Error() {
+  const pageDescription = defaultSettings.error500Title
+
   return (
   <div className="main__wrapper page--error page--500">
       <div className="main__container container">
@@ -33,7 +43,7 @@ export default function Error({error, reset}: {
                   className='sp'
                   />
               </div>
-              <TitleLine size="small">{title}</TitleLine>
+              <p className='text-center' dangerouslySetInnerHTML={{ __html: pageDescription }}></p>
             </div>
           </div>
         </div>

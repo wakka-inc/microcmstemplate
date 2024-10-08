@@ -6,6 +6,8 @@ import Sidebar from '@/components/organisms/sidebar'
 import { defaultSettings } from '@/contants/defaultSettings'
 import { ResolvingMetadata } from 'next'
 import getData from '@/utils/getData'
+import NotFound from '@/app/not-found'
+import Error from '@/app/error'
 
 type Props = {
   params: {
@@ -22,15 +24,27 @@ export async function generateMetadata({params, searchParams}: Props, parent: Re
   const authorEndpoint = `people/${params.authorId}/`
   const authorData = await getData(authorEndpoint)
   const parentData = await(parent)
-
-  const title = `${authorData.name} | ${settingsData.siteName}`
   const previousPreview = parentData.openGraph?.images || []
   const favicon = settingsData.favicon
   const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
 
+  // Title & description
+  let descriptionPage = authorData.description
+  let siteName = `| ${settingsData.siteName}`
+  if (authorData.status === 401) {
+    authorData.name = defaultSettings.serverError
+    descriptionPage = ''
+    siteName = ''
+  }
+  else if (authorData.status === 404) {
+    authorData.name = defaultSettings.pageNotFound
+    descriptionPage = ''
+  }
+  const title = `${authorData.name} ${siteName}`
+
   return {
     title: title,
-    description: authorData.description,
+    description: descriptionPage,
     openGraph: {
       title: title,
       images: [...previousPreview],
@@ -58,6 +72,19 @@ async function AuthorPage({params, searchParams}: Props) {
   const filters = `filters=contributed[contains]${params.authorId}`
   const postsEndpoint = `blogs/?${filters}&${fields}&${limitOffset}`
   const postsData = await getData(postsEndpoint)
+
+  const authorEndpoint = `people/${params.authorId}/`
+  const authorData = await getData(authorEndpoint)
+  
+  // [MICROCMS_API_KEY] not valid
+  if (authorData.status === 401) {
+    return <Error />
+  }
+  // Page not found
+  else if (authorData.status === 404) {
+    return <NotFound />
+  }
+  
 
   return (
    <>

@@ -5,6 +5,8 @@ import TitleMV from '@/components/organisms/titleMV'
 import { defaultSettings } from '@/contants/defaultSettings'
 import getData from '@/utils/getData'
 import { ResolvingMetadata } from 'next'
+import NotFound from '@/app/not-found'
+import Error from '@/app/error'
 
 type Props = {
   params: {
@@ -21,15 +23,28 @@ export async function generateMetadata({params}: Props, parent: ResolvingMetadat
   const settingsData = await getData('settings/')
   const tagEndpoint = `tag/${params.slug}/`
   const tagData = await getData(tagEndpoint)
-  
-  const title = `《${tagData.name}》タグ一覧 | ${settingsData.siteName}`
   const previousPreview = parentData.openGraph?.images || []
   const favicon = settingsData.favicon
   const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
 
+  // Title & description
+  let titlePage = `《${tagData.name}》タグ一覧`
+  let descriptionPage = `《${tagData.name}》タグの記事一覧ページです。`
+  let siteName = `| ${settingsData.siteName}`
+  if (tagData.status === 401) {
+    titlePage = defaultSettings.serverError
+    descriptionPage = ''
+    siteName = ''
+  }
+  else if (tagData.status === 404) {
+    titlePage = defaultSettings.pageNotFound
+    descriptionPage = ''
+  }
+  const title = `${titlePage} ${siteName}`
+
   return {
     title: title,
-    description: `《${tagData.name}》タグの記事一覧ページです。`,
+    description: descriptionPage,
     openGraph: {
       title: title,
       images: [...previousPreview],
@@ -63,6 +78,18 @@ async function TagPage({params, searchParams} : Props) {
   const filters = `filters=tags[contains]${tagId}`
   const postsEndpoint = `blogs?${filters}&${fields}&${limitOffset}`
   const postsData = await getData(postsEndpoint)
+
+  const tagEndpoint = `tag/${params.slug}/`
+  const tagData = await getData(tagEndpoint)
+  
+  // [MICROCMS_API_KEY] not valid
+  if (tagData.status === 401) {
+    return <Error />
+  }
+  // Page not found
+  else if (tagData.status === 404) {
+    return <NotFound />
+  }
   
   return (
     <>

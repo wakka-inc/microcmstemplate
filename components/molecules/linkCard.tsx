@@ -33,15 +33,17 @@ async function LinkCard({article}: {article: Article}) {
         
         <div className="linkcard__text">
           <div className="linkcard__info">
-            <div className="linkcard__favicon">
-              <Image
-                src={faviconUrl}
-                alt={siteName}
-                width={favicon.width}
-                height={favicon.height}
-                style={{width: '100%', height: 'auto'}}
-                />
-            </div>
+            { favicon && (
+              <div className="linkcard__favicon">
+                <Image
+                  src={faviconUrl}
+                  alt={siteName}
+                  width={favicon.width}
+                  height={favicon.height}
+                  style={{width: '100%', height: 'auto'}}
+                  />
+              </div>
+            )}
             <div className="linkcard__sitename">{siteName}</div>
           </div>
           <div className="linkcard__title">{article.title}</div>

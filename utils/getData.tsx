@@ -13,7 +13,14 @@ async function getData(endpoint: string) {
     }
   })
 
+  // Page not found for route /url_page
+  if (res.status === 404 || res.status === 401) {
+    return res
+  }
+
   // Check fetch data
+  // [settings] / [sidebar] / [menus] API not setup, will return empty object {} --> No error occurred.
+  // If [MICROCMS_SERVICE_DOMAIN] incorrect --> in this case
   if (endpoint == 'settings/'
    || endpoint == 'sidebar/'
    || endpoint == 'menus/'
@@ -23,7 +30,7 @@ async function getData(endpoint: string) {
     }
   }
 
-  // Redirect to 500 page`
+  // Redirect to 500 page
   if (!res.ok) {
     console.log('##Fail to fetch data -----', 'Endpoint: ' + endpoint)
     throw new Error('##Fail to fetch data ----- Endpoint: ' + endpoint)

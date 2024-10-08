@@ -7,11 +7,12 @@ import { defaultSettings } from '@/contants/defaultSettings'
 
 async function BlogMV() {
   const fields = defaultSettings.queryFields
+  const filters = `filters=featurePost[equals]true`
   const limitOffset = `limit=3`
-  const postsEndpoint = `blogs/?${fields}&${limitOffset}`
+  const postsEndpoint = `blogs/?${fields}&${limitOffset}&${filters}`
   const postsData = await getData(postsEndpoint)
   const articles = postsData.contents
-
+  
   return(
     !!articles?.length &&
     <>

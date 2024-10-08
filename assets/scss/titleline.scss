@@ -13,6 +13,11 @@
     margin-top: .2rem;
     background-color: rgba(#000, $alpha: .3);
   }
+  > p {
+    margin-bottom: 0;
+    line-height: 1.6;
+    text-align: center;
+  }
 
   /** Size Properties **/
   &--small {
@@ -22,7 +27,6 @@
       width: 1.6rem;
     }
   }
-
 
   /** MEDIA **/
   @media (max-width: 991px) {

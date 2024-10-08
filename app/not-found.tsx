@@ -1,7 +1,36 @@
 import image404 from '@/public/images/404.svg'
 import image404_sp from '@/public/images/404-sp.svg'
 import Image from 'next/image'
-import TitleLine from '@/components/atoms/titleline'
+import getData from '@/utils/getData'
+import { defaultSettings } from '@/contants/defaultSettings'
+
+/** MetaData */
+export async function generateMetadata() {
+  const settingsData = await getData('settings/')
+  const favicon = settingsData.favicon
+  const faviconUrl = favicon ? favicon.url : '/images/favicon.ico'
+
+  // Title
+  let titlePage = defaultSettings.pageNotFound
+  const title = `${titlePage} | ${settingsData.siteName}`
+
+  return {
+    title: title,
+    description: '',
+    openGraph: {
+      title: title,
+      type: 'article',
+    },
+    icons: {
+      icon: [
+        {
+          url: faviconUrl,
+          href: faviconUrl,
+        }
+      ]
+    }
+  }
+}
 
 export default function NotFound() {
   return (
@@ -27,7 +56,7 @@ export default function NotFound() {
                   className='sp'
                   />
               </div>
-              <TitleLine size="small">ページが見つかりません</TitleLine>
+              <p className='text-center' dangerouslySetInnerHTML={{ __html: defaultSettings.notfoundTitle }}></p>
             </div>
           </div>
         </div>

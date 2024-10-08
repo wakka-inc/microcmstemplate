@@ -22,7 +22,7 @@ function ArticleAuthor({postData}: {postData: Article}) {
   const month = date.getMonth() + 1
   const fullDay = (day < 10) ? ('0' + day) : day
   const fullMonth = (month < 10) ? ('0' + month) : month
-  const formatDate = `${date.getFullYear()}.${fullMonth}.${fullDay}`;
+  const formatDate = `${date.getFullYear()}.${fullMonth}.${fullDay}`
 
   return (
     <div className="article__author">

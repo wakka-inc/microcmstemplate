@@ -14,7 +14,7 @@
       height: 3rem;
       border-radius: .4rem;
       border: 1px solid transparent;
-      transition: all .15s;
+      transition: background .15s, color .15s;
     }
     svg {
       transform: scale(.8);
