@@ -139,6 +139,8 @@ Next.jsアプリをデプロイする最も簡単な方法は、[Vercel Platform
         - Inquiries Footer：フッターにお問い合わせエリアを表示。タイトル、説明、ボタン要素を含んでいます。
         - コピーライト：フッターの下にコピーライトテキストを表示します。
 
+## テンプレートに関するお問い合わせ
+お問い合わせは [こちら](https://share.hsforms.com/1U79PbvSARle4QiwoNL6lawcw6xx)
 
 ***
 
@@ -285,3 +287,8 @@ The template includes 8 api, with 5 api list format and 3 api object format.
         - Social: the site's social network. displayed in the menu and below the footer. Supports 10+ popular social networks (icons)
         - Inquiries Footer: displays the Inquiries section in the footer. Includes title, description and buttons elements.
         - Copyright: displays copyright text below the footer.
+
+## Inquiry about Template
+Contact us [here](https://share.hsforms.com/1U79PbvSARle4QiwoNL6lawcw6xx).  
+Only Japanese is supported.  
+Please understand this in advance.
